@@ -20,6 +20,7 @@ import astroScriptsPlugin from '../vite-plugin-scripts/index.js';
 import astroScriptsPageSSRPlugin from '../vite-plugin-scripts/page-ssr.js';
 import { createCustomViteLogger } from './errors/dev/index.js';
 import { resolveDependency } from './util.js';
+import { astroContentPlugin } from '../vite-plugin-content/index.js';
 
 interface CreateViteOptions {
 	settings: AstroSettings;
@@ -111,6 +112,7 @@ export async function createVite(
 			astroIntegrationsContainerPlugin({ settings, logging }),
 			astroScriptsPageSSRPlugin({ settings }),
 			astroLoadFallbackPlugin({ fs }),
+			astroContentPlugin({ settings, logging }),
 		],
 		publicDir: fileURLToPath(settings.config.publicDir),
 		root: fileURLToPath(settings.config.root),
