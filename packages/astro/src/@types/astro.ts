@@ -490,7 +490,7 @@ export interface AstroUserConfig {
 	/**
 	 * @docs
 	 * @name output
-	 * @type {('static' | 'server')}
+	 * @type {('static' | 'server' | 'hybrid')}
 	 * @default `'static'`
 	 * @see adapter
 	 * @description
@@ -499,6 +499,7 @@ export interface AstroUserConfig {
 	 *
 	 * - 'static' - Building a static site to be deploy to any static host.
 	 * - 'server' - Building an app to be deployed to a host supporting SSR (server-side rendering).
+	 * - 'hybrid' - Building a hybrid static/server site to be deployed to a host supporting SSR (server-side rendering).
 	 *
 	 * ```js
 	 * import { defineConfig } from 'astro/config';
@@ -508,7 +509,7 @@ export interface AstroUserConfig {
 	 * })
 	 * ```
 	 */
-	output?: 'static' | 'server';
+	output?: 'static' | 'server' | 'hybrid';
 
 	/**
 	 * @docs
