@@ -6,6 +6,6 @@ export interface PluginMetadata {
 		hydratedComponents: TransformResult['hydratedComponents'];
 		clientOnlyComponents: TransformResult['clientOnlyComponents'];
 		scripts: TransformResult['scripts'];
-		output?: Omit<AstroConfig['output'], 'hybrid'>
+		output?: AstroConfig['output'];
 	};
 }
