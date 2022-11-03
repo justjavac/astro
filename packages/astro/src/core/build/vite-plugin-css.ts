@@ -32,14 +32,21 @@ export function rollupPluginAstroBuildCSS(options: PluginOptions): VitePlugin[] 
 	function createNameForParentPages(id: string, ctx: { getModuleInfo: GetModuleInfo }): string {
 		const parents = Array.from(getTopLevelPages(id, ctx));
 		const firstParentId = parents[0]?.[0].id;
-		const firstParentName = firstParentId ? npath.parse(firstParentId).name : 'index';
+		const proposedName = createNameHash(
+			firstParentId,
+			parents.map(([page]) => page.id)
+		);
+		return proposedName;
+	}
 
+	function createNameHash(baseId: string, hashIds: string[]): string {
+		const baseName = baseId ? npath.parse(baseId).name : 'index';
 		const hash = crypto.createHash('sha256');
-		for (const [page] of parents) {
-			hash.update(page.id, 'utf-8');
+		for (const id of hashIds) {
+			hash.update(id, 'utf-8');
 		}
 		const h = hash.digest('hex').slice(0, 8);
-		const proposedName = firstParentName + '.' + h;
+		const proposedName = baseName + '.' + h;
 		return proposedName;
 	}
 
@@ -74,6 +81,15 @@ export function rollupPluginAstroBuildCSS(options: PluginOptions): VitePlugin[] 
 					// For CSS, create a hash of all of the pages that use it.
 					// This causes CSS to be built into shared chunks when used by multiple pages.
 					if (isCSSRequest(id)) {
+						for (const [pageInfo] of walkParentInfos(id, {
+							getModuleInfo: args[0].getModuleInfo,
+						})) {
+							if (pageInfo.id.endsWith(DELAYED_ASSET_FLAG)) {
+								// Split delayed assets to separate modules
+								// so they can be injected where needed
+								return createNameHash(id, [id]);
+							}
+						}
 						return createNameForParentPages(id, args[0]);
 					}
 				};
