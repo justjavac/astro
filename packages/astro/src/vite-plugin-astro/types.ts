@@ -1,11 +1,14 @@
 import type { TransformResult } from '@astrojs/compiler';
-import type { AstroConfig } from '../@types/astro';
+
+export interface PageOptions {
+	prerender?: boolean;
+}
 
 export interface PluginMetadata {
 	astro: {
 		hydratedComponents: TransformResult['hydratedComponents'];
 		clientOnlyComponents: TransformResult['clientOnlyComponents'];
 		scripts: TransformResult['scripts'];
-		output?: AstroConfig['output'];
+		pageOptions: PageOptions;
 	};
 }

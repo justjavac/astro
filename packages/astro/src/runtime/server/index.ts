@@ -28,6 +28,9 @@ import { Renderer } from './render/index.js';
 
 import { addAttribute } from './render/index.js';
 
+// Used in the build to replace statically prerendered pages
+export const noop = () => {};
+
 // Used in creating the component. aka the main export.
 export function createComponent(cb: AstroComponentFactory) {
 	// Add a flag to this callback to mark it as an Astro component
