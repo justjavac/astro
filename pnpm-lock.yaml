@@ -316,6 +316,9 @@ importers:
       astro: link:../../packages/astro
       preact: 10.11.2
 
+  examples/with-mdx/dist:
+    specifiers: {}
+
   examples/with-nanostores:
     specifiers:
       '@astrojs/preact': ^1.2.0
@@ -419,7 +422,7 @@ importers:
       deepmerge-ts: ^4.2.2
       diff: ^5.1.0
       eol: ^0.9.1
-      es-module-lexer: ^0.10.5
+      es-module-lexer: ^1.1.0
       esbuild: ^0.14.43
       execa: ^6.1.0
       fast-glob: ^3.2.11
@@ -492,7 +495,7 @@ importers:
       debug: 4.3.4
       deepmerge-ts: 4.2.2
       diff: 5.1.0
-      es-module-lexer: 0.10.5
+      es-module-lexer: 1.1.0
       esbuild: 0.14.54
       execa: 6.1.0
       fast-glob: 3.2.12
@@ -11674,6 +11677,10 @@ packages:
 
   /es-module-lexer/0.10.5:
     resolution: {integrity: sha512-+7IwY/kiGAacQfY+YBhKMvEmyAJnw5grTUgjG85Pe7vcUI/6b7pZjZG8nQ7+48YhzEAEqrEgD2dCz/JIK+AYvw==}
+    dev: false
+
+  /es-module-lexer/1.1.0:
+    resolution: {integrity: sha512-fJg+1tiyEeS8figV+fPcPpm8WqJEflG3yPU0NOm5xMvrNkuiy7HzX/Ljng4Y0hAoiw4/3hQTCFYw+ub8+a2pRA==}
     dev: false
 
   /es-shim-unscopables/1.0.0:
